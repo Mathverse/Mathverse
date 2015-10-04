@@ -1,0 +1,8 @@
+# IntelliJ IDEA files
+*.iml
+.idea/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
