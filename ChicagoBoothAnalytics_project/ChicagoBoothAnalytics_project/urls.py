@@ -22,6 +22,8 @@ from django.views.generic.base import RedirectView
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/admin')),
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^autocomplete/', include('autocomplete_light.urls'))
 ]
 
 urlpatterns += staticfiles_urlpatterns()

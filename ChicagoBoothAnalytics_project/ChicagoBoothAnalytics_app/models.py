@@ -39,7 +39,12 @@ class PersonOrgRole(Model):
         ordering = 'person', 'org', 'to_when', 'role'
 
     def __unicode__(self):
-        return str(self.person) + ' as ' + self.role + ' @ ' + str(self.org)
+        role = str(self.person) + ' as ' + self.role + ' @ ' + str(self.org)
+        if self.from_when:
+            role += ' from ' + str(self.from_when)
+        if self.to_when:
+            role += ' to ' + str(self.to_when)
+        return role
 
 
 class FactType(Model):
