@@ -17,7 +17,10 @@ class OrgFactInline(TabularInline):
 
 
 class PersonAdmin(ModelAdmin):
-    form = modelform_factory(Person, fields='__all__')
+    #form = modelform_factory(Person, fields='__all__')
+    fieldsets = ('Name', dict(fields=('first_name', 'first_name_alias', 'last_name'))),
+    list_display = 'first_name', 'first_name_alias', 'last_name'
+    search_fields = 'first_name', 'first_name_alias', 'last_name'
     inlines = PersonFactInline, PersonOrgRoleInline
 
 site.register(Person)
