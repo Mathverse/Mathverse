@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, ForeignKey, NullBooleanField
+from django.db.models import Model, CharField, DateField, ForeignKey, NullBooleanField
 
 
 class Person(Model):
@@ -32,6 +32,8 @@ class PersonOrgRole(Model):
     person = ForeignKey(Person, related_name='PersonOrgRole')
     org = ForeignKey(Org, related_name='PersonOrgRole')
     role = CharField(max_length=255)
+    from_when = DateField(DateField, blank=True, null=True)
+    to_when = DateField(DateField, blank=True, null=True)
 
     class Meta:
         ordering = 'person', 'org', 'role'
