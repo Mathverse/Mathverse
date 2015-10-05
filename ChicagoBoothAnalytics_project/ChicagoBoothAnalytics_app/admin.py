@@ -6,34 +6,34 @@ from models import Person, Org, PersonOrgRole, FactType, PersonFact, OrgFact
 
 class PersonOrgRoleInline(TabularInline):
     model = PersonOrgRole
-    extra = 9
+    can_delete = True
+    extra = 3
 
 
 class PersonFactInline(TabularInline):
     model = PersonFact
-    extra = 9
+    can_delete = True
+    extra = 3
 
 
 class OrgFactInline(TabularInline):
     model = OrgFact
-    extra = 9
+    can_delete = True
+    extra = 3
 
 
 class PersonAdmin(ModelAdmin):
-    #form = modelform_factory(Person, fields='__all__')
-    fieldsets = ('Name', dict(fields=('first_name', 'first_name_alias', 'last_name'))),
-    list_display = 'first_name', 'first_name_alias', 'last_name'
-    search_fields = 'first_name', 'first_name_alias', 'last_name'
-    inlines = PersonFactInline,
+    form = modelform_factory(Person, fields='__all__')
+    inlines = PersonFactInline, PersonOrgRoleInline
 
-site.register(Person)
+site.register(Person, PersonAdmin)
 
 
 class OrgAdmin(ModelAdmin):
     form = modelform_factory(Org, fields='__all__')
     inlines = OrgFactInline, PersonOrgRoleInline
 
-site.register(Org)
+site.register(Org, OrgAdmin)
 
 
 class PersonOrgRoleAdmin(ModelAdmin):
@@ -46,13 +46,13 @@ class PersonOrgRoleAdmin(ModelAdmin):
     list_filter = 'org',
     search_fields = 'person', 'org', 'role'
 
-site.register(PersonOrgRole)
+site.register(PersonOrgRole, PersonOrgRoleAdmin)
 
 
 class FactTypeAdmin(ModelAdmin):
     form = modelform_factory(FactType, fields='__all__')
 
-site.register(FactType)
+site.register(FactType, FactTypeAdmin)
 
 
 class PersonFactAdmin(ModelAdmin):
@@ -63,7 +63,7 @@ class PersonFactAdmin(ModelAdmin):
     list_filter = 'fact_type',
     search_fields = 'person', 'fact_type', 'fact'
 
-site.register(PersonFact)
+site.register(PersonFact, PersonFactAdmin)
 
 
 class OrgFactAdmin(ModelAdmin):
@@ -74,4 +74,4 @@ class OrgFactAdmin(ModelAdmin):
     list_filter = 'fact_type',
     search_fields = 'org', 'fact_type', 'fact'
 
-site.register(OrgFact)
+site.register(OrgFact, OrgFactAdmin)
