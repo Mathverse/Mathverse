@@ -42,7 +42,6 @@ class PersonOrgRoleAdmin(ModelAdmin):
         ('At Org', dict(fields=('org',))),\
         ('As Role', dict(fields=('role',))),\
         ('When', dict(fields=('from_when', 'to_when')))
-    list_display = 'person', 'org', 'role'
     list_filter = 'org',
     search_fields = 'person', 'org', 'role'
 
