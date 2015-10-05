@@ -37,7 +37,7 @@ class PersonOrgRole(Model):
         ordering = 'person', 'org', 'role'
 
     def __unicode__(self):
-        return self.person + ' as ' + self.role + ' @ ' + self.org
+        return str(self.person) + ' as ' + self.role + ' @ ' + str(self.org)
 
 
 class FactType(Model):
@@ -59,7 +59,7 @@ class PersonFact(Model):
         ordering = 'person', 'fact_type', 'fact'
 
     def __unicode__(self):
-        return self.person + ': ' + self.fact_type + ': ' + self.fact
+        return str(self.person) + ': ' + str(self.fact_type) + ': ' + self.fact
 
 
 class OrgFact(Model):
@@ -71,4 +71,4 @@ class OrgFact(Model):
         ordering = 'org', 'fact_type', 'fact'
 
     def __unicode__(self):
-        return self.org + ': ' + self.fact_type + ': ' + self.fact
+        return str(self.org) + ': ' + str(self.fact_type) + ': ' + self.fact
