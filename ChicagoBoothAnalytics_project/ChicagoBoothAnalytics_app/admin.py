@@ -4,14 +4,28 @@ from django.contrib.admin import ModelAdmin, site, TabularInline
 from models import Person, Org, PersonOrgRole, FactType, PersonFact, OrgFact
 
 
+class PersonOrgRoleInline(TabularInline):
+    model = PersonOrgRole
+
+
+class PersonFactInline(TabularInline):
+    model = PersonFact
+
+
+class OrgFactInline(TabularInline):
+    model = OrgFact
+
+
 class PersonAdmin(ModelAdmin):
     form = modelform_factory(Person, fields='__all__')
+    inlines = PersonFactInline, PersonOrgRoleInline
 
 site.register(Person)
 
 
 class OrgAdmin(ModelAdmin):
     form = modelform_factory(Org, fields='__all__')
+    inlines = OrgFactInline, PersonOrgRoleInline
 
 site.register(Org)
 
