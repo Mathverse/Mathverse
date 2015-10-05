@@ -36,7 +36,7 @@ class PersonOrgRole(Model):
     to_when = DateField(DateField, blank=True, null=True)
 
     class Meta:
-        ordering = 'person', 'org', 'role'
+        ordering = 'person', 'org', 'to_when', 'role'
 
     def __unicode__(self):
         return str(self.person) + ' as ' + self.role + ' @ ' + str(self.org)

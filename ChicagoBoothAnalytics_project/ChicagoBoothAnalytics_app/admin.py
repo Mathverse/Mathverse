@@ -36,10 +36,10 @@ site.register(PersonOrgRole)
 
 
 class FactTypeAdmin(ModelAdmin):
-    fieldsets = ('Label', dict(fields=('label',))),
-    list_display = 'label',
-    search_fields = 'label',
-    #form = modelform_factory(FactType)
+    #fieldsets = ('Label', dict(fields=('label',))),
+    #list_display = 'label',
+    #search_fields = 'label',
+    form = modelform_factory(FactType, fields='__all__')
 
 site.register(FactType)
 
