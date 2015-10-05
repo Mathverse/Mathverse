@@ -23,25 +23,27 @@ class OrgFactInline(TabularInline):
 
 
 class PersonAdmin(ModelAdmin):
-    form = modelform_factory(Person, fields='__all__')
+    fieldsets = \
+        ('Name', dict(fields=('first_name', 'first_name_alias', 'last_name'))), \
+        ('Gender', dict(fields=('gender',)))
+    list_view = 'last_name', 'first_name', 'first_name_alias', 'gender'
+    search_fields = 'last_name', 'first_name', 'first_name_alias',
     inlines = PersonFactInline, PersonOrgRoleInline
 
 site.register(Person, PersonAdmin)
 
 
 class OrgAdmin(ModelAdmin):
-    form = modelform_factory(Org, fields='__all__')
+    fieldsets = ('Name', dict(fields=('name',))),
+    list_view = 'name',
+    search_fields = 'name',
     inlines = OrgFactInline, PersonOrgRoleInline
 
 site.register(Org, OrgAdmin)
 
 
 class PersonOrgRoleAdmin(ModelAdmin):
-    fieldsets =\
-        ('Person', dict(fields=('person',))),\
-        ('At Org', dict(fields=('org',))),\
-        ('As Role', dict(fields=('role',))),\
-        ('When', dict(fields=('from_when', 'to_when')))
+    form = modelform_factory(PersonOrgRole, fields='__all__')
     list_filter = 'org',
     search_fields = 'person', 'org', 'role'
 
@@ -49,28 +51,24 @@ site.register(PersonOrgRole, PersonOrgRoleAdmin)
 
 
 class FactTypeAdmin(ModelAdmin):
-    form = modelform_factory(FactType, fields='__all__')
+    fieldsets = ('Label', dict(fields=('label',))),
+    list_view = 'label',
+    search_fields = 'label',
 
 site.register(FactType, FactTypeAdmin)
 
 
 class PersonFactAdmin(ModelAdmin):
-    fieldsets = \
-        ('Person', dict(fields=('person',))), \
-        ('Fact', dict(fields=('fact_type', 'fact')))
-    list_display = 'person', 'fact_type', 'fact'
-    list_filter = 'fact_type',
+    form = modelform_factory(PersonFact, fields='__all__')
+    list_view = 'person', 'fact_type', 'fact'
     search_fields = 'person', 'fact_type', 'fact'
 
 site.register(PersonFact, PersonFactAdmin)
 
 
 class OrgFactAdmin(ModelAdmin):
-    fieldsets = \
-        ('Org', dict(fields=('org',))), \
-        ('Fact', dict(fields=('fact_type', 'fact')))
-    list_display = 'org', 'fact_type', 'fact'
-    list_filter = 'fact_type',
+    form = modelform_factory(OrgFact, fields='__all__')
+    list_view = 'org', 'fact_type', 'fact'
     search_fields = 'org', 'fact_type', 'fact'
 
 site.register(OrgFact, OrgFactAdmin)
