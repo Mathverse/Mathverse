@@ -38,3 +38,37 @@ class PersonOrgRole(Model):
 
     def __unicode__(self):
         return self.person + ' as ' + self.role + ' @ ' + self.org
+
+
+class FactType(Model):
+    label = CharField(max_length=255)
+
+    class Meta:
+        ordering = 'label',
+
+    def __unicode__(self):
+        return self.label
+
+
+class PersonFact(Model):
+    person = ForeignKey(Person, related_name='PersonFact')
+    fact_type = ForeignKey(FactType, related_name='PersonFact')
+    fact = CharField(max_length=255)
+
+    class Meta:
+        ordering = 'person', 'fact_type', 'fact'
+
+    def __unicode__(self):
+        return self.person + ': ' + self.fact_type + ': ' + self.fact
+
+
+class OrgFact(Model):
+    org = ForeignKey(Org, related_name='OrgFact')
+    fact_type = ForeignKey(FactType, related_name='OrgFact')
+    fact = CharField(max_length=255)
+
+    class Meta:
+        ordering = 'org', 'fact_type', 'fact'
+
+    def __unicode__(self):
+        return self.org + ': ' + self.fact_type + ': ' + self.fact
