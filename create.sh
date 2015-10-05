@@ -8,4 +8,4 @@ git add --all
 git commit -m "create AWS EB Django app"
 git push --all
 
-eb deploy --no-verify-ssl
+eb create --no-verify-ssl
