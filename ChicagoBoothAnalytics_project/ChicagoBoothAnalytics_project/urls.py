@@ -17,8 +17,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from ChicagoBoothAnalytics_app import views
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', views.index, name='url___root'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
