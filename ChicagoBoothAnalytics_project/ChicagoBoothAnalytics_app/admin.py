@@ -1,6 +1,6 @@
 from django.contrib.admin import ModelAdmin, site, TabularInline
 
-from models import Person, Org, PersonOrgRole
+from models import Person, Org, PersonOrgRole, FactType, PersonFact, OrgFact
 
 
 class PersonAdmin(ModelAdmin):
@@ -29,3 +29,33 @@ class PersonOrgRoleAdmin(ModelAdmin):
     search_fields = 'person', 'org', 'role'
 
 site.register(PersonOrgRole, PersonOrgRoleAdmin)
+
+
+class FactTypeAdmin(ModelAdmin):
+    fieldsets = ('Label', dict(fields=('label',))),
+    list_display = 'label',
+    search_fields = 'label',
+
+site.register(FactType, FactTypeAdmin)
+
+
+class PersonFactAdmin(ModelAdmin):
+    fieldsets = \
+        ('Person', dict(fields=('person',))), \
+        ('Fact', dict(fields=('fact_type', 'fact')))
+    list_display = 'person', 'fact_type', 'fact'
+    list_filter = 'fact_type',
+    search_fields = 'person', 'fact_type', 'fact'
+
+site.register(PersonFact, PersonFactAdmin)
+
+
+class OrgFactAdmin(ModelAdmin):
+    fieldsets = \
+        ('Org', dict(fields=('org',))), \
+        ('Fact', dict(fields=('fact_type', 'fact')))
+    list_display = 'org', 'fact_type', 'fact'
+    list_filter = 'fact_type',
+    search_fields = 'org', 'fact_type', 'fact'
+
+site.register(OrgFact, OrgFactAdmin)
