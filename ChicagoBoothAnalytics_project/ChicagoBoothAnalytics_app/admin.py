@@ -6,14 +6,17 @@ from models import Person, Org, PersonOrgRole, FactType, PersonFact, OrgFact
 
 class PersonOrgRoleInline(TabularInline):
     model = PersonOrgRole
+    extra = 9
 
 
 class PersonFactInline(TabularInline):
     model = PersonFact
+    extra = 9
 
 
 class OrgFactInline(TabularInline):
     model = OrgFact
+    extra = 9
 
 
 class PersonAdmin(ModelAdmin):
@@ -21,7 +24,7 @@ class PersonAdmin(ModelAdmin):
     fieldsets = ('Name', dict(fields=('first_name', 'first_name_alias', 'last_name'))),
     list_display = 'first_name', 'first_name_alias', 'last_name'
     search_fields = 'first_name', 'first_name_alias', 'last_name'
-    inlines = PersonFactInline, PersonOrgRoleInline
+    inlines = PersonFactInline,
 
 site.register(Person)
 
