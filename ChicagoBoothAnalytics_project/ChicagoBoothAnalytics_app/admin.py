@@ -5,19 +5,19 @@ from models import Person, Org, PersonOrgRole, FactType, PersonFact, OrgFact
 
 
 class PersonAdmin(ModelAdmin):
-    fieldsets = ('Name', dict(fields=('first_name', 'last_name', 'gender'))),
-    list_display = 'last_name', 'first_name', 'gender'
-    search_fields = 'first_name', 'last_name'
-    #form = modelform_factory(Person)
+    #fieldsets = ('Name', dict(fields=('first_name', 'last_name', 'gender'))),
+    #list_display = 'last_name', 'first_name', 'gender'
+    #search_fields = 'first_name', 'last_name'
+    form = modelform_factory(Person)
 
 site.register(Person)
 
 
 class OrgAdmin(ModelAdmin):
-    fieldsets = ('Name', dict(fields=('name',))),
-    list_display = 'name',
-    search_fields = 'name',
-    #form = modelform_factory(Org)
+    #fieldsets = ('Name', dict(fields=('name',))),
+    #list_display = 'name',
+    #search_fields = 'name',
+    form = modelform_factory(Org)
 
 site.register(Org)
 
@@ -35,10 +35,10 @@ site.register(PersonOrgRole)
 
 
 class FactTypeAdmin(ModelAdmin):
-    fieldsets = ('Label', dict(fields=('label',))),
-    list_display = 'label',
-    search_fields = 'label',
-    #form = modelform_factory(FactType)
+    #fieldsets = ('Label', dict(fields=('label',))),
+    #list_display = 'label',
+    #search_fields = 'label',
+    form = modelform_factory(FactType)
 
 site.register(FactType)
 
