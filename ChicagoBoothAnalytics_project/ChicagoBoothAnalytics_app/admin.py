@@ -1,22 +1,25 @@
+from autocomplete_light import modelform_factory
 from django.contrib.admin import ModelAdmin, site, TabularInline
 
 from models import Person, Org, PersonOrgRole, FactType, PersonFact, OrgFact
 
 
 class PersonAdmin(ModelAdmin):
-    fieldsets = ('Name', dict(fields=('first_name', 'last_name', 'gender'))),
-    list_display = 'last_name', 'first_name', 'gender'
-    search_fields = 'first_name', 'last_name'
+    #fieldsets = ('Name', dict(fields=('first_name', 'last_name', 'gender'))),
+    #list_display = 'last_name', 'first_name', 'gender'
+    #search_fields = 'first_name', 'last_name'
+    form = modelform_factory(Person)
 
-site.register(Person, PersonAdmin)
+site.register(Person)
 
 
 class OrgAdmin(ModelAdmin):
-    fieldsets = ('Name', dict(fields=('name',))),
-    list_display = 'name',
-    search_fields = 'name',
+    #fieldsets = ('Name', dict(fields=('name',))),
+    #list_display = 'name',
+    #search_fields = 'name',
+    form = modelform_factory(Org)
 
-site.register(Org, OrgAdmin)
+site.register(Org)
 
 
 class PersonOrgRoleAdmin(ModelAdmin):
@@ -28,15 +31,16 @@ class PersonOrgRoleAdmin(ModelAdmin):
     list_filter = 'org',
     search_fields = 'person', 'org', 'role'
 
-site.register(PersonOrgRole, PersonOrgRoleAdmin)
+site.register(PersonOrgRole)
 
 
 class FactTypeAdmin(ModelAdmin):
-    fieldsets = ('Label', dict(fields=('label',))),
-    list_display = 'label',
-    search_fields = 'label',
+    #fieldsets = ('Label', dict(fields=('label',))),
+    #list_display = 'label',
+    #search_fields = 'label',
+    form = modelform_factory(FactType)
 
-site.register(FactType, FactTypeAdmin)
+site.register(FactType)
 
 
 class PersonFactAdmin(ModelAdmin):
@@ -47,7 +51,7 @@ class PersonFactAdmin(ModelAdmin):
     list_filter = 'fact_type',
     search_fields = 'person', 'fact_type', 'fact'
 
-site.register(PersonFact, PersonFactAdmin)
+site.register(PersonFact)
 
 
 class OrgFactAdmin(ModelAdmin):
@@ -58,4 +62,4 @@ class OrgFactAdmin(ModelAdmin):
     list_filter = 'fact_type',
     search_fields = 'org', 'fact_type', 'fact'
 
-site.register(OrgFact, OrgFactAdmin)
+site.register(OrgFact)
