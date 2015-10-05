@@ -1,4 +1,4 @@
-from django.db.models import Model, NullBooleanField, CharField
+from django.db.models import Model, CharField, ForeignKey, NullBooleanField
 
 
 class Person(Model):
@@ -16,3 +16,25 @@ class Person(Model):
         else:
             first_name = self.first_name
         return first_name + ' ' + self.last_name.upper()
+
+
+class Org(Model):
+    name = CharField(max_length=255)
+
+    class Meta:
+        ordering = 'name',
+
+    def __unicode__(self):
+        return self.name
+
+
+class PersonOrgRole(Model):
+    person = ForeignKey(Person, related_name='PersonOrgRole')
+    org = ForeignKey(Org, related_name='PersonOrgRole')
+    role = CharField(max_length=255)
+
+    class Meta:
+        ordering = 'person', 'org', 'role'
+
+    def __unicode__(self):
+        return self.person + ' as ' + self.role + ' @ ' + self.org
