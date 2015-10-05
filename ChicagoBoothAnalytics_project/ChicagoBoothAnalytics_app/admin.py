@@ -27,3 +27,5 @@ class PersonOrgRoleAdmin(ModelAdmin):
     list_display = 'person', 'org', 'role'
     list_filter = 'org',
     search_fields = 'person', 'org', 'role'
+
+site.register(PersonOrgRole, PersonOrgRoleAdmin)

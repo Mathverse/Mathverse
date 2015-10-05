@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-python DjangoProject/manage.py makemigrations
-python DjangoProject/manage.py migrate
-python DjangoProject/manage.py collectstatic
+python ChicagoBoothAnalytics_project/manage.py makemigrations
+python ChicagoBoothAnalytics_project/manage.py migrate
+python ChicagoBoothAnalytics_project/manage.py collectstatic
 
 git add --all
 git commit -m "deploy changes to AWS EB Django app"
