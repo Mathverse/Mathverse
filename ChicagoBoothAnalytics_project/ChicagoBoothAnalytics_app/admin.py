@@ -1,7 +1,7 @@
 from autocomplete_light import modelform_factory
 from django.contrib.admin import ModelAdmin, site, TabularInline
 
-from models import Person, Org, PersonOrgRole, FactType, PersonFact, OrgFact
+from models import Person, MutualPersonalRelationship, Org, PersonOrgRole, FactType, PersonFact, OrgFact
 
 
 class PersonOrgRoleInline(TabularInline):
@@ -31,6 +31,12 @@ class PersonAdmin(ModelAdmin):
     inlines = PersonFactInline, PersonOrgRoleInline
 
 site.register(Person, PersonAdmin)
+
+
+class MutualPersonalRelationshipAdmin(ModelAdmin):
+    form = modelform_factory(MutualPersonalRelationship, fields='__all__')
+
+site.register(MutualPersonalRelationship, MutualPersonalRelationshipAdmin)
 
 
 class OrgAdmin(ModelAdmin):

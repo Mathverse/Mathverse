@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, DateField, ForeignKey, NullBooleanField
+from django.db.models import Model, CharField, DateField, ForeignKey, ManyToManyField, NullBooleanField
 
 
 class Person(Model):
@@ -16,6 +16,14 @@ class Person(Model):
         else:
             first_name = self.first_name
         return first_name + ' ' + self.last_name.upper()
+
+
+class MutualPersonalRelationship(Model):
+    persons = ManyToManyField(Person, related_name='MutualPersonalRelationship', blank=True)
+    description = CharField(max_length=255)
+
+    def __unicode__(self):
+        return ', '.join(self.persons.all()) + ' know one another: ' + self.description
 
 
 class Org(Model):
