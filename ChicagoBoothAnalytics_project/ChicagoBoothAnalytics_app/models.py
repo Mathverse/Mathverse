@@ -23,7 +23,7 @@ class MutualPersonalRelationship(Model):
     description = CharField(max_length=255)
 
     def __unicode__(self):
-        return ', '.join(self.persons.all()) + ' know one another: ' + self.description
+        return ', '.join(str(p) for p in self.persons.all()) + ' know one another: ' + self.description
 
 
 class Org(Model):
