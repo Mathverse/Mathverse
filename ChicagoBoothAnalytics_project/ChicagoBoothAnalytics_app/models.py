@@ -49,9 +49,9 @@ class GeogRegion(Model):
 
 class Org(Model):
     name = CharField(max_length=255)
-    business_sectors = ManyToManyField(BusinessSector, related_name='Org')
-    geog_regions = ManyToManyField(GeogRegion, related_name='Org')
-    roles = ManyToManyField(Role, related_name='Org')
+    business_sectors = ManyToManyField(BusinessSector, related_name='Org', blank=True)
+    geog_regions = ManyToManyField(GeogRegion, related_name='Org', blank=True)
+    roles = ManyToManyField(Role, related_name='Org', blank=True)
 
     class Meta:
         ordering = 'name',

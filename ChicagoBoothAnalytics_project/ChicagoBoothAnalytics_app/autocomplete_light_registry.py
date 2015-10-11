@@ -1,6 +1,7 @@
 from autocomplete_light import register
-from models import Role, GeogRegion, Person, Org, FactType
+from models import BusinessSector, Role, GeogRegion, Person, Org, FactType
 
+register(BusinessSector, search_fields=('name',))
 register(Role, search_fields=('title',))
 register(GeogRegion, search_fields=('name',))
 register(Org, search_fields=('name',))

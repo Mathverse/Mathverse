@@ -58,11 +58,7 @@ site.register(Role, RoleAdmin)
 
 
 class OrgAdmin(ModelAdmin):
-    fieldsets =\
-        ('Name', dict(fields=('name',))),\
-        ('Business Sectors', dict(fields=('business_sectors',))),\
-        ('Geog Regions', dict(fields=('geog_resions',))),\
-        ('Roles', dict(fields=('roles',)))
+    form = modelform_factory(Org, fields='__all__')
     list_view = 'name',
     search_fields = 'name',
     inlines = OrgFactInline, PersonOrgRoleInline
