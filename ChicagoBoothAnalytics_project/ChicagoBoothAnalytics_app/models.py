@@ -25,7 +25,7 @@ class RoleLevel(Model):
 
 class Role(Model):
     title = CharField(max_length=255)
-    level = ForeignKey(RoleLevel, related_name='Role', blank=True, null=True)
+    level = ForeignKey(RoleLevel, related_name='role_level', blank=True, null=True)
 
     class Meta:
         ordering = 'level', 'title'
