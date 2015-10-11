@@ -25,13 +25,16 @@ class RoleLevel(Model):
 
 class Role(Model):
     title = CharField(max_length=255)
-    level = ForeignKey(RoleLevel, related_name='Role')
+    level = ForeignKey(RoleLevel, related_name='Role', blank=True, null=True)
 
     class Meta:
         ordering = 'level', 'title'
 
     def __unicode__(self):
-        return '%s [%s level]' % (self.title, str(self.level))
+        role = self.title
+        if self.level:
+            role += '[%s level]' % str(self.level)
+        return role
 
 
 class GeogRegion(Model):
