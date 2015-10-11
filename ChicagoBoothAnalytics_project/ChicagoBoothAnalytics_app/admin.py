@@ -31,6 +31,14 @@ class BusinessSectorAdmin(ModelAdmin):
 site.register(BusinessSector, BusinessSectorAdmin)
 
 
+class GeogRegionAdmin(ModelAdmin):
+    fieldsets = ('Name', dict(fields=('name',))),
+    list_view = 'name',
+    search_fields = 'name',
+
+site.register(GeogRegion, GeogRegionAdmin)
+
+
 class RoleLevelAdmin(ModelAdmin):
     fieldsets = ('Level', dict(fields=('level', 'level_number_from_high_to_low'))),
     list_view = 'level',
