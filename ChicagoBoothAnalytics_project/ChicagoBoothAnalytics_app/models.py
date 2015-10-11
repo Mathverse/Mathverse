@@ -49,9 +49,9 @@ class GeogRegion(Model):
 
 class Org(Model):
     name = CharField(max_length=255)
-    business_sectors = ManyToManyField(BusinessSector, related_name='Org', blank=True)
-    geog_regions = ManyToManyField(GeogRegion, related_name='Org', blank=True)
-    roles = ManyToManyField(Role, related_name='Org', blank=True)
+    business_sectors = ManyToManyField(BusinessSector, related_name='org_business_sectors', blank=True)
+    geog_regions = ManyToManyField(GeogRegion, related_name='org_geog_regions', blank=True)
+    roles = ManyToManyField(Role, related_name='org_roles', blank=True)
 
     class Meta:
         ordering = 'name',
@@ -78,7 +78,7 @@ class Person(Model):
 
 
 class MutualPersonalRelationship(Model):
-    persons = ManyToManyField(Person, related_name='MutualPersonalRelationship', blank=True)
+    persons = ManyToManyField(Person, related_name='mutualpersonalrelationship_persons', blank=True)
     description = CharField(max_length=255)
 
     def __unicode__(self):
@@ -86,10 +86,10 @@ class MutualPersonalRelationship(Model):
 
 
 class PersonOrgRole(Model):
-    person = ForeignKey(Person, related_name='PersonOrgRole')
-    org = ForeignKey(Org, related_name='PersonOrgRole')
-    roles = ManyToManyField(Role, related_name='PersonOrgRole')
-    geog_regions = ManyToManyField(GeogRegion, related_name='PersonOrgRole')
+    person = ForeignKey(Person, related_name='personorgrole_person')
+    org = ForeignKey(Org, related_name='personorgrole_org')
+    roles = ManyToManyField(Role, related_name='personorgrole_roles')
+    geog_regions = ManyToManyField(GeogRegion, related_name='personorgrole_geog_regions')
     from_when = DateField(DateField, blank=True, null=True)
     to_when = DateField(DateField, blank=True, null=True)
 
@@ -118,8 +118,8 @@ class FactType(Model):
 
 
 class PersonFact(Model):
-    person = ForeignKey(Person, related_name='PersonFact')
-    fact_type = ForeignKey(FactType, related_name='PersonFact')
+    person = ForeignKey(Person, related_name='personfact_person')
+    fact_type = ForeignKey(FactType, related_name='personfact_type')
     fact = CharField(max_length=255)
 
     class Meta:
@@ -130,8 +130,8 @@ class PersonFact(Model):
 
 
 class OrgFact(Model):
-    org = ForeignKey(Org, related_name='OrgFact')
-    fact_type = ForeignKey(FactType, related_name='OrgFact')
+    org = ForeignKey(Org, related_name='orgfact_org')
+    fact_type = ForeignKey(FactType, related_name='orgfact_type')
     fact = CharField(max_length=255)
 
     class Meta:
