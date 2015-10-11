@@ -1,7 +1,8 @@
 from autocomplete_light import modelform_factory
 from django.contrib.admin import ModelAdmin, site, TabularInline
 
-from models import Person, MutualPersonalRelationship, Org, PersonOrgRole, FactType, PersonFact, OrgFact
+from models import BusinessSector, RoleLevel, Role, GeogRegion, Org, Person, MutualPersonalRelationship, PersonOrgRole,\
+    FactType, PersonFact, OrgFact
 
 
 class PersonOrgRoleInline(TabularInline):
@@ -22,6 +23,45 @@ class OrgFactInline(TabularInline):
     extra = 3
 
 
+class BusinessSectorAdmin(ModelAdmin):
+    fieldsets = ('Name', dict(fields=('name',))),
+    list_view = 'name',
+    search_fields = 'name',
+
+site.register(BusinessSector, BusinessSectorAdmin)
+
+
+class RoleLevelAdmin(ModelAdmin):
+    fieldsets = ('Level', dict(fields=('level', 'level_number_from_high_to_low'))),
+    list_view = 'level',
+    search_fields = 'level',
+
+site.register(RoleLevel, RoleLevelAdmin)
+
+
+class RoleAdmin(ModelAdmin):
+    fieldsets =\
+        ('Title', dict(fields=('title',))),\
+        ('Level', dict(fields=('level',)))
+    list_view = 'title', 'level'
+    search_fields = 'title',
+
+site.register(Role, RoleAdmin)
+
+
+class OrgAdmin(ModelAdmin):
+    fieldsets =\
+        ('Name', dict(fields=('name',))),\
+        ('Business Sectors', dict(fields=('business_sectors',))),\
+        ('Geog Regions', dict(fields=('geog_resions',))),\
+        ('Roles', dict(fields=('roles',)))
+    list_view = 'name',
+    search_fields = 'name',
+    inlines = OrgFactInline, PersonOrgRoleInline
+
+site.register(Org, OrgAdmin)
+
+
 class PersonAdmin(ModelAdmin):
     fieldsets = \
         ('Name', dict(fields=('first_name', 'first_name_alias', 'last_name'))), \
@@ -37,15 +77,6 @@ class MutualPersonalRelationshipAdmin(ModelAdmin):
     form = modelform_factory(MutualPersonalRelationship, fields='__all__')
 
 site.register(MutualPersonalRelationship, MutualPersonalRelationshipAdmin)
-
-
-class OrgAdmin(ModelAdmin):
-    fieldsets = ('Name', dict(fields=('name',))),
-    list_view = 'name',
-    search_fields = 'name',
-    inlines = OrgFactInline, PersonOrgRoleInline
-
-site.register(Org, OrgAdmin)
 
 
 class PersonOrgRoleAdmin(ModelAdmin):

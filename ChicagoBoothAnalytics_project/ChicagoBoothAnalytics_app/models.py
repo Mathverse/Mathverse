@@ -1,4 +1,60 @@
-from django.db.models import Model, CharField, DateField, ForeignKey, ManyToManyField, NullBooleanField
+from django.db.models import Model, CharField, DateField, ForeignKey, ManyToManyField, NullBooleanField, \
+    PositiveSmallIntegerField
+
+
+class BusinessSector(Model):
+    name = CharField(max_length=255)
+
+    class Meta:
+        ordering = 'name',
+
+    def __unicode__(self):
+        return self.name
+
+
+class RoleLevel(Model):
+    level = CharField(max_length=255)
+    level_number_from_high_to_low = PositiveSmallIntegerField()
+
+    class Meta:
+        ordering = 'level_number_from_high_to_low',
+
+    def __unicode__(self):
+        return self.level
+
+
+class Role(Model):
+    title = CharField(max_length=255)
+    level = ForeignKey(RoleLevel, related_name='Role')
+
+    class Meta:
+        ordering = 'level', 'title'
+
+    def __unicode__(self):
+        return '%s [%s level]' % (self.title, str(self.level))
+
+
+class GeogRegion(Model):
+    name = CharField(max_length=255)
+
+    class Meta:
+        ordering = 'name',
+
+    def __unicode__(self):
+        return self.name
+
+
+class Org(Model):
+    name = CharField(max_length=255)
+    business_sectors = ManyToManyField(BusinessSector, related_name='Org')
+    geog_regions = ManyToManyField(GeogRegion, related_name='Org')
+    roles = ManyToManyField(Role, related_name='Org')
+
+    class Meta:
+        ordering = 'name',
+
+    def __unicode__(self):
+        return self.name
 
 
 class Person(Model):
@@ -26,25 +82,16 @@ class MutualPersonalRelationship(Model):
         return ', '.join(str(p) for p in self.persons.all()) + ' know one another: ' + self.description
 
 
-class Org(Model):
-    name = CharField(max_length=255)
-
-    class Meta:
-        ordering = 'name',
-
-    def __unicode__(self):
-        return self.name
-
-
 class PersonOrgRole(Model):
     person = ForeignKey(Person, related_name='PersonOrgRole')
     org = ForeignKey(Org, related_name='PersonOrgRole')
-    role = CharField(max_length=255)
+    roles = ManyToManyField(Role, related_name='PersonOrgRole')
+    geog_regions = ManyToManyField(GeogRegion, related_name='PersonOrgRole')
     from_when = DateField(DateField, blank=True, null=True)
     to_when = DateField(DateField, blank=True, null=True)
 
     class Meta:
-        ordering = 'person', 'org', 'to_when', 'role'
+        ordering = 'person', 'org', 'to_when'
 
     def __unicode__(self):
         role = str(self.person) + ' as ' + self.role + ' @ ' + str(self.org)
@@ -87,3 +134,10 @@ class OrgFact(Model):
 
     def __unicode__(self):
         return str(self.org) + ': ' + str(self.fact_type) + ': ' + self.fact
+
+
+
+
+
+
+
