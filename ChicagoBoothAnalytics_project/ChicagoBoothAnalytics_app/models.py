@@ -33,7 +33,7 @@ class Role(Model):
     def __unicode__(self):
         role = self.title
         if self.level:
-            role += '[%s level]' % str(self.level)
+            role += ' [%s level]' % str(self.level)
         return role
 
 
