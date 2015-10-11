@@ -94,12 +94,14 @@ class PersonOrgRole(Model):
         ordering = 'person', 'org', 'to_when'
 
     def __unicode__(self):
-        role = str(self.person) + ' as ' + self.role + ' @ ' + str(self.org)
+        roles = str(self.person) + ' @ ' + str(self.org)
+        if self.roles.all():
+            roles += ' as ' + ', '.join(str(r) for r in self.roles.all())
         if self.from_when:
-            role += ' from ' + str(self.from_when)
+            roles += ' from ' + str(self.from_when)
         if self.to_when:
-            role += ' to ' + str(self.to_when)
-        return role
+            roles += ' to ' + str(self.to_when)
+        return roles
 
 
 class FactType(Model):
