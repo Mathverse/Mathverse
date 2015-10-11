@@ -6,7 +6,7 @@ python ChicagoBoothAnalytics_project/manage.py collectstatic
 
 git add --all
 
-getopts m: git_commit_message
+getopts "m:" git_commit_message
 git commit -m "$git_commit_message"
 
 git push --all
