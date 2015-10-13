@@ -1,5 +1,6 @@
-from django.db.models import Model, CharField, DateField, ForeignKey, ManyToManyField, NullBooleanField, \
-    PositiveSmallIntegerField
+from django.db.models import Model, BooleanField, CharField, DateField, ForeignKey, ManyToManyField, NullBooleanField,\
+    PositiveSmallIntegerField, TextField, URLField
+from django.utils.timezone import now
 
 
 class BusinessSector(Model):
@@ -60,6 +61,25 @@ class Org(Model):
         return self.name
 
 
+class CareerOpportunity(Model):
+    org = ForeignKey(Org, related_name='careeropportunity_org')
+    role = ForeignKey(Role, related_name='careeropportunity_role')
+    url = URLField(max_length=255, blank=True, null=True)
+    active = BooleanField(default=True)
+    posting_date = DateField(default=now, blank=True, null=True)
+    notes = TextField(blank=True, null=True)
+
+    class Meta:
+        ordering = 'org', 'role', '-active', '-posting_date'
+
+    def __unicode__(self):
+        opp = '%s: %s' % (str(self.org), str(self.role))
+        if self.active:
+            return '%s [posted on %s]' % (opp, str(self.posting_date))
+        else:
+            return '%s [INACTIVE]' % opp
+
+
 class Person(Model):
     first_name = CharField(max_length=255)
     first_name_alias = CharField(max_length=255, blank=True, null=True)
@@ -74,7 +94,7 @@ class Person(Model):
             first_name = self.first_name_alias
         else:
             first_name = self.first_name
-        return first_name + ' ' + self.last_name.upper()
+        return '%s %s' % (first_name, self.last_name.upper())
 
 
 class MutualPersonalRelationship(Model):
