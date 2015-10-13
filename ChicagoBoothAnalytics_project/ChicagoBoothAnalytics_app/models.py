@@ -88,6 +88,7 @@ class Person(Model):
     first_name_alias = CharField(max_length=255, blank=True, null=True)
     last_name = CharField(max_length=255)
     gender = NullBooleanField(choices=((False, 'female'), (True, 'male')))
+    current_geog_regions = ManyToManyField(GeogRegion, related_name='person_current_geog_region', blank=True)
 
     class Meta:
         ordering = 'last_name', 'first_name', 'first_name_alias'
