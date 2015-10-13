@@ -75,7 +75,10 @@ class CareerOpportunity(Model):
     def __unicode__(self):
         opp = '%s: %s' % (str(self.org), str(self.role))
         if self.active:
-            return '%s [posted on %s]' % (opp, str(self.posting_date))
+            if self.posting_date:
+                return '%s [posted on %s]' % (opp, str(self.posting_date))
+            else:
+                return opp
         else:
             return '%s [INACTIVE]' % opp
 
