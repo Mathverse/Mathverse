@@ -75,6 +75,8 @@ class CareerOpportunity(Model):
 
     def __unicode__(self):
         opp = '%s: %s' % (str(self.org), str(self.role))
+        if self.geog_regions.all():
+            opp += ' in %s' % ', '.join(str(g) for g in self.geog_regions.all())
         if self.active:
             if self.posting_date:
                 return '%s [posted on %s]' % (opp, str(self.posting_date))
