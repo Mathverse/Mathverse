@@ -64,6 +64,7 @@ class Org(Model):
 class CareerOpportunity(Model):
     org = ForeignKey(Org, related_name='careeropportunity_org')
     role = ForeignKey(Role, related_name='careeropportunity_role')
+    geog_regions = ManyToManyField(GeogRegion, related_name='careeropportunity_geog_regions', blank=True)
     url = URLField(max_length=255, blank=True, null=True)
     active = BooleanField(default=True)
     posting_date = DateField(default=now, blank=True, null=True)
