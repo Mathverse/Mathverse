@@ -61,32 +61,6 @@ class Org(Model):
         return self.name
 
 
-class CareerOpportunity(Model):
-    org = ForeignKey(Org, related_name='careeropportunity_org')
-    role = ForeignKey(Role, related_name='careeropportunity_role')
-    geog_regions = ManyToManyField(GeogRegion, related_name='careeropportunity_geog_regions', blank=True)
-    url = URLField(max_length=255, blank=True, null=True)
-    active = BooleanField(default=True)
-    posting_date = DateField(default=now, blank=True, null=True)
-    contact_persons = ManyToManyField(Person, related_name='careeropportunity_contact_persons', blank=True)
-    notes = TextField(blank=True, null=True)
-
-    class Meta:
-        ordering = 'org', 'role', '-active', '-posting_date'
-
-    def __unicode__(self):
-        opp = '%s: %s' % (str(self.org), str(self.role))
-        if self.geog_regions.all():
-            opp += ' in %s' % ', '.join(str(g) for g in self.geog_regions.all())
-        if self.active:
-            if self.posting_date:
-                return '%s [posted on %s]' % (opp, str(self.posting_date))
-            else:
-                return opp
-        else:
-            return '%s [INACTIVE]' % opp
-
-
 class Person(Model):
     first_name = CharField(max_length=255)
     first_name_alias = CharField(max_length=255, blank=True, null=True)
@@ -133,6 +107,32 @@ class PersonOrgRole(Model):
         if self.to_when:
             roles += ' to ' + str(self.to_when)
         return roles
+
+
+class CareerOpportunity(Model):
+    org = ForeignKey(Org, related_name='careeropportunity_org')
+    role = ForeignKey(Role, related_name='careeropportunity_role')
+    geog_regions = ManyToManyField(GeogRegion, related_name='careeropportunity_geog_regions', blank=True)
+    url = URLField(max_length=255, blank=True, null=True)
+    active = BooleanField(default=True)
+    posting_date = DateField(default=now, blank=True, null=True)
+    contact_persons = ManyToManyField(Person, related_name='careeropportunity_contact_persons', blank=True)
+    notes = TextField(blank=True, null=True)
+
+    class Meta:
+        ordering = 'org', 'role', '-active', '-posting_date'
+
+    def __unicode__(self):
+        opp = '%s: %s' % (str(self.org), str(self.role))
+        if self.geog_regions.all():
+            opp += ' in %s' % ', '.join(str(g) for g in self.geog_regions.all())
+        if self.active:
+            if self.posting_date:
+                return '%s [posted on %s]' % (opp, str(self.posting_date))
+            else:
+                return opp
+        else:
+            return '%s [INACTIVE]' % opp
 
 
 class FactType(Model):
