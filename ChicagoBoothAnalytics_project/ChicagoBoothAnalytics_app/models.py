@@ -68,6 +68,7 @@ class CareerOpportunity(Model):
     url = URLField(max_length=255, blank=True, null=True)
     active = BooleanField(default=True)
     posting_date = DateField(default=now, blank=True, null=True)
+    contact_persons = ManyToManyField(Person, related_name='careeropportunity_contact_persons', blank=True)
     notes = TextField(blank=True, null=True)
 
     class Meta:

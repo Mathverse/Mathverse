@@ -10,6 +10,6 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-# SQL queries
-*.sql
+# .CSV files
+*.csv
 
