@@ -90,8 +90,8 @@ class MutualPersonalRelationship(Model):
 class PersonOrgRole(Model):
     person = ForeignKey(Person, related_name='personorgrole_person')
     org = ForeignKey(Org, related_name='personorgrole_org')
-    roles = ManyToManyField(Role, related_name='personorgrole_roles', null=True)
-    geog_regions = ManyToManyField(GeogRegion, related_name='personorgrole_geog_regions', null=True)
+    roles = ManyToManyField(Role, related_name='personorgrole_roles', blank=True)
+    geog_regions = ManyToManyField(GeogRegion, related_name='personorgrole_geog_regions', blank=True)
     from_when = DateField(DateField, blank=True, null=True)
     to_when = DateField(DateField, blank=True, null=True)
 
