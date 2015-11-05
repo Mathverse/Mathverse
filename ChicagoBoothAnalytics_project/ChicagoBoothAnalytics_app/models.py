@@ -79,14 +79,6 @@ class Person(Model):
         return '%s %s' % (first_name, self.last_name.upper())
 
 
-class MutualPersonalRelationship(Model):
-    persons = ManyToManyField(Person, related_name='mutualpersonalrelationship_persons', blank=True)
-    description = CharField(max_length=255)
-
-    def __unicode__(self):
-        return ', '.join(str(p) for p in self.persons.all()) + ' know one another: ' + self.description
-
-
 class PersonOrgRole(Model):
     person = ForeignKey(Person, related_name='personorgrole_person')
     org = ForeignKey(Org, related_name='personorgrole_org')
@@ -167,10 +159,3 @@ class OrgFact(Model):
 
     def __unicode__(self):
         return str(self.org) + ': ' + str(self.fact_type) + ': ' + self.fact
-
-
-
-
-
-
-
