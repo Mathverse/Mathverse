@@ -106,25 +106,25 @@ class CareerOpportunity(Model):
     role = ForeignKey(Role, related_name='careeropportunity_role')
     geog_regions = ManyToManyField(GeogRegion, related_name='careeropportunity_geog_regions', blank=True)
     url = URLField(max_length=255, blank=True, null=True)
-    active = BooleanField(default=True)
+    open = BooleanField(default=True)
     posting_date = DateField(default=now, blank=True, null=True)
     contact_persons = ManyToManyField(Person, related_name='careeropportunity_contact_persons', blank=True)
     notes = TextField(blank=True, null=True)
 
     class Meta:
-        ordering = 'org', 'role', '-active', '-posting_date'
+        ordering = 'org', 'role', '-open', '-posting_date'
 
     def __unicode__(self):
         opp = '%s: %s' % (str(self.org), str(self.role))
         if self.geog_regions.all():
             opp += ' in %s' % ', '.join(str(g) for g in self.geog_regions.all())
-        if self.active:
+        if self.open:
             if self.posting_date:
                 return '%s [posted on %s]' % (opp, str(self.posting_date))
             else:
                 return opp
         else:
-            return '%s [INACTIVE]' % opp
+            return '%s [CLOSED]' % opp
 
 
 class FactType(Model):

@@ -4,6 +4,7 @@
 
 # Python files
 *.pyc
+*.ipynb_checkpoints*
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
@@ -13,3 +14,8 @@
 # .CSV files
 *.csv
 
+# Spark files
+*metastore_db*
+
+# log files
+*.log

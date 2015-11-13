@@ -68,7 +68,7 @@ site.register(Org, OrgAdmin)
 
 class CareerOpportunityAdmin(ModelAdmin):
     form = modelform_factory(CareerOpportunity, fields='__all__')
-    list_view = 'org', 'role', 'url', 'active', 'posting_date', 'notes'
+    list_view = 'org', 'role', 'url', 'open', 'posting_date', 'notes'
     list_filer = 'org', 'role', 'active'
     search_fields = 'org', 'role', 'url', 'notes'
 
