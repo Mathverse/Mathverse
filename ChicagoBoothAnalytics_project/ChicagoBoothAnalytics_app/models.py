@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db.models import Model, BooleanField, CharField, DateField, ForeignKey, ManyToManyField, NullBooleanField,\
     PositiveSmallIntegerField, TextField, URLField
 from django.utils.timezone import now
@@ -125,6 +126,20 @@ class CareerOpportunity(Model):
                 return opp
         else:
             return '%s [CLOSED]' % opp
+
+
+class UserInterestedInCareerOpportunities(Model):
+    user = ForeignKey(User, related_name='userinterstedincareeropportunity_user')
+    career_opportunities = ManyToManyField(
+        CareerOpportunity,
+        related_name='userinterstedincareeropportunity_careeropportunity',
+        blank=True)
+
+    class Meta:
+        ordering = 'user',
+
+    def __unicode__(self):
+        return '%s interested in %s' % (str(self.user), ', '.join(str(opp) for opp in self.career_opportunities.all()))
 
 
 class FactType(Model):
