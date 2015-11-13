@@ -102,11 +102,22 @@ class PersonOrgRole(Model):
         return roles
 
 
+class CareerOpportunityURL(Model):
+    url = URLField(max_length=255)
+
+    class Meta:
+        ordering = 'url',
+
+    def __unicode__(self):
+        return self.url
+
+
 class CareerOpportunity(Model):
     org = ForeignKey(Org, related_name='careeropportunity_org')
     role = ForeignKey(Role, related_name='careeropportunity_role')
     geog_regions = ManyToManyField(GeogRegion, related_name='careeropportunity_geog_regions', blank=True)
     url = URLField(max_length=255, blank=True, null=True)
+    urls = ManyToManyField(CareerOpportunityURL, related_name='careeropportunity_urls', blank=True)
     open = BooleanField(default=True)
     posting_date = DateField(default=now, blank=True, null=True)
     contact_persons = ManyToManyField(Person, related_name='careeropportunity_contact_persons', blank=True)
