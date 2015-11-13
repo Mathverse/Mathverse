@@ -180,7 +180,7 @@ select
   id,
   org_id,
   role_id,
-  active as open,
+  open,
   posting_date,
   url
 into
@@ -188,7 +188,7 @@ into
 from
   "ChicagoBoothAnalytics_app_careeropportunity"
 order by
-  not active;
+  not open;
 
 drop table if exists CareerOpportunity;
 select 
@@ -294,7 +294,7 @@ into
 from
   "ChicagoBoothAnalytics_app_careeropportunity"
 where
-  active = true
+  open = true
 group by
   org_id;
 
