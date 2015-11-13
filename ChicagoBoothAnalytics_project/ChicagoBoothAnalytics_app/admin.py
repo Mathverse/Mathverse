@@ -1,8 +1,8 @@
 from autocomplete_light import modelform_factory
 from django.contrib.admin import ModelAdmin, site, TabularInline
 
-from models import BusinessSector, RoleLevel, Role, GeogRegion, Org, CareerOpportunity,\
-    UserInterestedInCareerOpportunities, Person, PersonOrgRole, FactType, PersonFact, OrgFact
+from models import BusinessSector, RoleLevel, Role, GeogRegion, Org, CareerOpportunity, UserInterestedInOrgs,\
+    Person, PersonOrgRole, FactType, PersonFact, OrgFact
 
 
 class PersonOrgRoleInline(TabularInline):
@@ -75,12 +75,12 @@ class CareerOpportunityAdmin(ModelAdmin):
 site.register(CareerOpportunity, CareerOpportunityAdmin)
 
 
-class UserInterestedInCareerOpportunitiesAdmin(ModelAdmin):
-    form = modelform_factory(UserInterestedInCareerOpportunities, fields='__all__')
+class UserInterestedInOrgsAdmin(ModelAdmin):
+    form = modelform_factory(UserInterestedInOrgs, fields='__all__')
     list_view = 'user',
     search_fields = 'user',
 
-site.register(UserInterestedInCareerOpportunities, UserInterestedInCareerOpportunitiesAdmin)
+site.register(UserInterestedInOrgs, UserInterestedInOrgsAdmin)
 
 
 class PersonAdmin(ModelAdmin):

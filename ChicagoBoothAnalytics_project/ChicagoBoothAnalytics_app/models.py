@@ -128,18 +128,15 @@ class CareerOpportunity(Model):
             return '%s [CLOSED]' % opp
 
 
-class UserInterestedInCareerOpportunities(Model):
-    user = ForeignKey(User, related_name='userinterstedincareeropportunity_user')
-    career_opportunities = ManyToManyField(
-        CareerOpportunity,
-        related_name='userinterstedincareeropportunity_careeropportunity',
-        blank=True)
+class UserInterestedInOrgs(Model):
+    user = ForeignKey(User, related_name='userinterstedinorgs_user')
+    orgs = ManyToManyField(Org, related_name='userinterstedinorgs_orgs', blank=True)
 
     class Meta:
         ordering = 'user',
 
     def __unicode__(self):
-        return '%s interested in %s' % (str(self.user), ', '.join(str(opp) for opp in self.career_opportunities.all()))
+        return '%s interested in %s' % (str(self.user), ', '.join(str(org) for org in self.orgs.all()))
 
 
 class FactType(Model):
