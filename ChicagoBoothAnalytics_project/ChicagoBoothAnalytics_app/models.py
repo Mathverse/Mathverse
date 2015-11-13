@@ -128,6 +128,18 @@ class CareerOpportunity(Model):
             return '%s [CLOSED]' % opp
 
 
+class UserCareerOpportunityStatus(Model):
+    user = ForeignKey(User, related_name='usercareeropportunity_user')
+    career_opportunity = ForeignKey(CareerOpportunity, related_name='usercareeropportunity_career_opportunity')
+    status = CharField(max_length=300)
+
+    class Meta:
+        ordering = 'user', 'career_opportunity'
+
+    def __unicode__(self):
+        return "%s's status w.r.t %s: %s" % (str(self.user), str(self.career_opportunity), self.status)
+
+
 class UserInterestedInOrgs(Model):
     user = ForeignKey(User, related_name='userinterstedinorgs_user')
     orgs = ManyToManyField(Org, related_name='userinterstedinorgs_orgs', blank=True)

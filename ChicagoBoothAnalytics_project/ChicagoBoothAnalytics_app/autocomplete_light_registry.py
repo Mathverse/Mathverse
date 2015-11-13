@@ -1,6 +1,6 @@
 from autocomplete_light import register
 from django.contrib.auth.models import User
-from models import BusinessSector, Role, GeogRegion, Person, Org, FactType
+from models import BusinessSector, Role, GeogRegion, Person, Org, CareerOpportunity, FactType
 
 
 register(User, search_fields=('username', 'first_name', 'last_name', 'email'))
