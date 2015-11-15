@@ -8,25 +8,25 @@ from models import BusinessSector, RoleLevel, Role, GeogRegion, Org, CareerOppor
 class PersonOrgRoleInline(TabularInline):
     model = PersonOrgRole
     can_delete = True
-    extra = 3
+    extra = 0
 
 
 class PersonFactInline(TabularInline):
     model = PersonFact
     can_delete = True
-    extra = 3
+    extra = 0
 
 
 class OrgFactInline(TabularInline):
     model = OrgFact
     can_delete = True
-    extra = 3
+    extra = 0
 
 
 class OrgCareerOpportunityInLine(TabularInline):
     model = CareerOpportunity
     can_delete = True
-    extra = 3
+    extra = 0
 
 
 class BusinessSectorAdmin(ModelAdmin):
