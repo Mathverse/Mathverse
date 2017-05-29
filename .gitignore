@@ -1,6 +1,9 @@
 # Python
 *.pyc
 
+# Databases
+db.sqlite3
+
 # IntelliJ IDEA
 *.iml
 .idea/
