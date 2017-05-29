@@ -1,21 +1,6 @@
-# IntelliJ IDEA files
+# Python
+*.pyc
+
+# IntelliJ IDEA
 *.iml
 .idea/
-
-# Python files
-*.pyc
-*.ipynb_checkpoints*
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-
-# .CSV files
-*.csv
-
-# Spark files
-*metastore_db*
-
-# log files
-*.log
