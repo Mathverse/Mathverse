@@ -1,18 +1,23 @@
-name := "Math_ScalaPlay2"
+lazy val `Math_ScalaPlay` =
+  (project in file("."))
+    .enablePlugins(PlayScala)
+    .settings(
+      name := "Math",
 
-version := "0.0.0"
+      organization := "Nguyen Minh Ha",
 
-lazy val `math_scalaplay2` = (project in file(".")).enablePlugins(PlayScala)
+      version := "0.0.0",
 
-scalaVersion := "2.12.2"
+      scalaVersion := "2.11.11",
 
-libraryDependencies ++= Seq(
-  jdbc,
-  cache,
-  ws,
-  specs2 % Test
-)
+      libraryDependencies ++= Seq(
+        jdbc,
+        cache,
+        ws,
+        specs2 % Test
+      ),
 
-unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
+      unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" ),
 
-resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
+      resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
+    )
