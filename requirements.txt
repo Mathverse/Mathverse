@@ -1,5 +1,5 @@
-Django==1.8.5
-django-autocomplete-light==2.2.8
-psycopg2==2.6.1
-six==1.9.0
-wheel==0.24.0
+Django>=1.11.1
+Django-AutoComplete-Light>=3.2.7
+PsycoPG2>=2.7.1
+Six>=1.10.0
+Wheel>=0.29.0
