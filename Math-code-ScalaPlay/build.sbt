@@ -1,4 +1,4 @@
-lazy val `Math_ScalaPlay` =
+lazy val `Math_ScalaPlay_project` =
   (project in file("."))
     .enablePlugins(PlayScala)
     .settings(
