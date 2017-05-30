@@ -1,9 +1,9 @@
 branch-defaults:
   master:
-    environment: math
+    environment: math-env
     group_suffix: null
 global:
-  application_name: Math
+  application_name: MathApp
   default_platform: Python 2.7
   default_region: us-east-1
   profile: null
