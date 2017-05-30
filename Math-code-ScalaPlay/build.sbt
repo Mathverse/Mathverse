@@ -10,7 +10,9 @@ lazy val `Math-ScalaPlay-project` =
 
       scalaVersion := "2.11.11",
 
-      resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases",
+      resolvers ++= Seq(
+        "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
+      ),
 
       libraryDependencies ++= Seq(
         jdbc,
@@ -19,5 +21,5 @@ lazy val `Math-ScalaPlay-project` =
         specs2 % Test
       ),
 
-      unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
+      unmanagedResourceDirectories in Test <+= baseDirectory ( _ /"target/web/public/test" )
     )
