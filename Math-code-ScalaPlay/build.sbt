@@ -18,7 +18,9 @@ lazy val `Math-ScalaPlay-project` =
         jdbc,
         cache,
         ws,
-        specs2 % Test
+        specs2 % Test,
+
+        "org.postgresql" % "postgresql" % "9.4.1212"
       ),
 
       unmanagedResourceDirectories in Test <+= baseDirectory ( _ /"target/web/public/test" )
