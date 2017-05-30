@@ -17,6 +17,7 @@ dist
 /.project
 /RUNNING_PID
 /.settings
+.cache
 
 # Databases
 db.sqlite3
