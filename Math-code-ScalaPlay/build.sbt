@@ -15,12 +15,18 @@ lazy val `Math-ScalaPlay-project` =
       ),
 
       libraryDependencies ++= Seq(
-        jdbc,
+        // jdbc,   // using Slick for accessing your databases
         cache,
         ws,
         specs2 % Test,
+        // evolutions,   // no need to add Play evolutions -- transitive dependency of play-slick-evolutions
 
-        "org.postgresql" % "postgresql" % "9.4.1212"
+        // PostgreSQL
+        "org.postgresql" % "postgresql" % "9.4.1212",
+
+        // Slick
+        "com.typesafe.play" %% "play-slick" % "2.0.0",
+        "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0"
       ),
 
       unmanagedResourceDirectories in Test <+= baseDirectory ( _ /"target/web/public/test" )
