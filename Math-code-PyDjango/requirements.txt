@@ -1,3 +1,11 @@
 Django>=1.11.1
+
 Django-AutoComplete-Light>=3.2.7
+Django-Generic-M2M>=0.3.1
+Django-GM2M>=0.4.9
+Django-QuerySetSequence>=0.7.2
+Django-Tagging>=0.4.5
+
 PsycoPG2>=2.7.1
+
+South>=1.0.2
