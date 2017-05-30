@@ -9,27 +9,18 @@ from django.db.models import Model, \
 
 
 class Ref(Model):
-    name = CharField(
-        max_length=255,   # CharFields must define a 'max_length' attribute
-        blank=False,
-        null=False
-    )
-
     url = URLField(
-        max_length=255,   # CharFields must define a 'max_length' attribute
-        blank=True,
-        null=True
+        max_length=1339,   # CharFields must define a 'max_length' attribute
+        blank=False,
+        null=False,
+        primary_key=True,
     )
 
     class Meta:
-        ordering = 'name',
+        ordering = 'url',
 
     def __unicode__(self):
-        return '{0}{1}'.format(
-            self.name,
-            ' ({0})'.format(self.url)
-                if self.url
-                else '')
+        return self.url
 
 
 class Topic(Model):

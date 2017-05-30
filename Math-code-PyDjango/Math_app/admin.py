@@ -33,10 +33,10 @@ from models import Ref, Topic, Problem, Solution
 
 class RefAdmin(ModelAdmin):
     fieldsets = \
-        ('Name', dict(fields=('name',))),
+        ('URL', dict(fields=('url',))),
 
-    list_view = 'name',
-    search_fields = 'name',
+    list_view = 'url',
+    search_fields = 'url',
 
 site.register(Ref, RefAdmin)
 
