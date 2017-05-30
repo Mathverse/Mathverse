@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'dal_genericm2m_queryset_sequence',
     'dal_gm2m',
     'dal_gm2m_queryset_sequence',
-    # 'dal_queryset_sequence',   # *** ImportError: No module named queryset_sequence ***
+    'dal_queryset_sequence',
     'dal_select2_queryset_sequence',
     'dal_select2_tagging',
     'dal_select2_taggit',
