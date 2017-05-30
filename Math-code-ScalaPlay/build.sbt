@@ -25,8 +25,8 @@ lazy val `Math-ScalaPlay-project` =
         "org.postgresql" % "postgresql" % "9.4.1212",
 
         // Slick
-        "com.typesafe.play" %% "play-slick" % "2.0.0",
-        "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0"
+        "com.typesafe.play" %% "play-slick" % "3.0.0-M3",
+        "com.typesafe.play" %% "play-slick-evolutions" % "3.0.0-M3"
       ),
 
       unmanagedResourceDirectories in Test <+= baseDirectory ( _ /"target/web/public/test" )
