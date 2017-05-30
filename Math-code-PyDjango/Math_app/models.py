@@ -25,7 +25,11 @@ class Ref(Model):
         ordering = 'name',
 
     def __unicode__(self):
-        return self.name
+        return '{0}{1}'.format(
+            self.name,
+            ' ({0})'.format(self.url)
+                if self.url
+                else '')
 
 
 class Topic(Model):
@@ -33,6 +37,13 @@ class Topic(Model):
         max_length=255,   # CharFields must define a 'max_length' attribute
         blank=False,
         null=False
+    )
+
+    refs = ManyToManyField(
+        to=Ref,
+        related_name='topic_refs',
+        blank=True
+        # null=True   # null has no effect on ManyToManyField
     )
 
     class Meta:
@@ -57,6 +68,13 @@ class Problem(Model):
     topics = ManyToManyField(
         to=Topic,
         related_name='problem_topics',
+        blank=True
+        # null=True   # null has no effect on ManyToManyField
+    )
+
+    refs = ManyToManyField(
+        to=Ref,
+        related_name='problem_refs',
         blank=True
         # null=True   # null has no effect on ManyToManyField
     )
@@ -91,6 +109,13 @@ class Solution(Model):
     topics = ManyToManyField(
         to=Topic,
         related_name='solution_topics',
+        blank=True
+        # null=True   # null has no effect on ManyToManyField
+    )
+
+    refs = ManyToManyField(
+        to=Ref,
+        related_name='solution_refs',
         blank=True
         # null=True   # null has no effect on ManyToManyField
     )
