@@ -13,14 +13,22 @@ class Ref(Model):
         max_length=1339,   # CharFields must define a 'max_length' attribute
         blank=False,
         null=False,
-        primary_key=True,
+        unique=True
+    )
+
+    description = CharField(
+        max_length=255,   # CharFields must define a 'max_length' attribute
+        blank=True,
+        null=True
     )
 
     class Meta:
         ordering = 'url',
 
     def __unicode__(self):
-        return self.url
+        return '{0} ({1})'.format(self.description, self.url) \
+            if self.description \
+            else self.url
 
 
 class Topic(Model):
