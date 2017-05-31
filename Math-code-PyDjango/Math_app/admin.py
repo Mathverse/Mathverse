@@ -15,36 +15,45 @@ class RefInline(TabularInline):
 
 class RefAdmin(ModelAdmin):
     fieldsets = \
-        ('URL', dict(fields=('url',))),
+        ('Ref Details', dict(fields=('url', 'description'))),
 
-    list_view = 'url',
-    search_fields = 'url',
+    list_view = 'url', 'description'
+    search_fields = 'url', 'description'
 
 site.register(Ref, RefAdmin)
 
 
 class TopicAdmin(ModelAdmin):
-    fieldsets = ('Name', dict(fields=('name',))),
+    fieldsets = \
+        ('Name', dict(fields=('name',))), \
+        ('Refs', dict(fields=('refs',)))
+
     list_view = 'name',
     search_fields = 'name',
-    inlines = RefInline,
+    # inlines = RefInline,
 
 site.register(Topic, TopicAdmin)
 
 
 class ProblemAdmin(ModelAdmin):
-    fieldsets = ('Name', dict(fields=('name',))),
+    fieldsets = \
+        ('Name', dict(fields=('name',))), \
+        ('Refs', dict(fields=('refs',)))
+
     list_view = 'name',
     search_fields = 'name',
-    inlines = RefInline,
+    # inlines = RefInline,
 
 site.register(Problem, ProblemAdmin)
 
 
 class SolutionAdmin(ModelAdmin):
-    fieldsets = ('Name', dict(fields=('name',))),
+    fieldsets = \
+        ('Name', dict(fields=('name',))), \
+        ('Refs', dict(fields=('refs',)))
+
     list_view = 'name',
     search_fields = 'name',
-    inlines = RefInline,
+    # inlines = RefInline,
 
 site.register(Solution, SolutionAdmin)
