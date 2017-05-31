@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
+
+
+# check if running on Linux cluster or local Mac
+_ON_LINUX_CLUSTER = sys.platform.startswith('linux')
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,9 +29,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '#heqz-e@^9tp8=23^i@o4%1j5hb*msgqr7!0=v1v^rr*4d+vlp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = not _ON_LINUX_CLUSTER
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = \
+    ['*'] if _ON_LINUX_CLUSTER \
+          else []
 
 
 # Application definition
@@ -97,6 +105,10 @@ DATABASES = {
         'PASSWORD': 'MinhHa27255',
         'HOST': 'math.c6b0ebeid6nw.us-east-1.rds.amazonaws.com',
         'PORT': '5432'
+    } if _ON_LINUX_CLUSTER
+    else {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 

@@ -1,4 +1,4 @@
 ﻿#!/usr/bin/env bash
 
 
-python manage.py runserver --insecure
+python manage.py runserver
