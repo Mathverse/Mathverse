@@ -3,7 +3,9 @@ package controllers
 
 import play.api.mvc.{
   Action => PlayAction,
+  Call => PlayCall,
   Controller => PlayController,
+  Result => PlayResult,
   Results => PlayResults
 }
 
