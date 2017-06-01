@@ -19,9 +19,6 @@ dist
 /.settings
 .cache
 
-# Databases
-db.sqlite3
-
 # IntelliJ IDEA
 *.iml
 .idea/
