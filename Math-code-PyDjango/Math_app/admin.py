@@ -15,7 +15,7 @@ class RefInline(TabularInline):
 
 class RefAdmin(ModelAdmin):
     fieldsets = \
-        ('Ref Details', dict(fields=('url', 'description', 'test_field_0', 'test_field_1'))),
+        ('Ref Details', dict(fields=('url', 'description'))),
 
     list_view = 'url', 'description'
     search_fields = 'url', 'description'
