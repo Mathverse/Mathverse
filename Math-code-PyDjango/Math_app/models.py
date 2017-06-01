@@ -22,6 +22,10 @@ class Ref(Model):
         null=True
     )
 
+    test_field_0 = CharField(max_length=10, blank=True, null=True)
+
+    test_field_1 = CharField(max_length=30, blank=True, null=True)
+
     class Meta:
         ordering = 'url',
 
