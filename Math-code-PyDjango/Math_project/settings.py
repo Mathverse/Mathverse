@@ -105,11 +105,11 @@ DATABASES = {
         'PASSWORD': 'MinhHa27255',
         'HOST': 'math.c6b0ebeid6nw.us-east-1.rds.amazonaws.com',
         'PORT': '5432'
-    } if _ON_LINUX_CLUSTER
-    else {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
-    }
+    } # if _ON_LINUX_CLUSTER
+    # else {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+    # }
 }
 
 
