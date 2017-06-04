@@ -1,4 +1,4 @@
-Django>=1.11.1
+Django>=1.11.2
 Django-AutoComplete-Light>=3.2.7
 Django-Extensions>=1.7.9
 Django-Generic-M2M>=0.3.1
