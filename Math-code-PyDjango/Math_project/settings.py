@@ -32,8 +32,9 @@ SECRET_KEY = '#heqz-e@^9tp8=23^i@o4%1j5hb*msgqr7!0=v1v^rr*4d+vlp'
 DEBUG = not _ON_LINUX_CLUSTER
 
 ALLOWED_HOSTS = \
-    ['*'] if _ON_LINUX_CLUSTER \
-          else []
+    ['.elasticbeanstalk.com'] \
+    if _ON_LINUX_CLUSTER \
+    else ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -53,6 +54,8 @@ INSTALLED_APPS = [
     'dal_select2_taggit',
 
     # 'grappelli',
+
+    'django_extensions',
 
     'django.contrib.admin',
     'django.contrib.auth',
