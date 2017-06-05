@@ -9,4 +9,7 @@ Django-QuerySetSequence>=0.7.2
 Django-Tagging>=0.4.5
 Django-Taggit>=0.22.1
 
+Django-LaTeX>=0.1
+Django-LaTeXify>=0.2.1
+
 PsycoPG2>=2.7.1
