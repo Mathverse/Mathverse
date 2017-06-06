@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'dal_select2_tagging',
     'dal_select2_taggit',
 
-    'grappelli',
+    # 'grappelli',
 
     'django_extensions',
 
