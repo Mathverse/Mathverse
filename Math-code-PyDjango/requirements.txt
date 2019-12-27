@@ -1,17 +1,17 @@
-Django>=1.11.2
+Django >= 2.2.9, < 3
 
-Django-AutoComplete-Light>=3.2.7
-Django-Extensions>=1.7.9
-Django-Generic-M2M>=0.3.1
-Django-GM2M>=0.4.9
-Django-Nested-InLines>=0.1
-Django-QuerySetSequence>=0.7.2
-Django-Tagging>=0.4.5
-Django-Taggit>=0.22.1
+Django-AutoComplete-Light >= 3.5.0
+Django-Extensions >= 2.2.5
+Django-Generic-M2M >= 0.3.1
+Django-GM2M >= 0.6.1
+Django-Nested-InLines >= 0.1
+Django-QuerySetSequence >= 0.12
+Django-Tagging >= 0.4.6
+Django-Taggit >= 1.2.0
 
-Django-Grappelli>=2.10.1
+Django-Grappelli >= 2.13.2
 
-Django-LaTeX>=0.1
-Django-LaTeXify>=0.2.1
+Django-LaTeX >= 0.1
+Django-LaTeXify >= 0.2.1
 
-PsycoPG2>=2.7.1
+PsycoPG2-binary >= 2.8.4
